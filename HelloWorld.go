@@ -6,13 +6,16 @@ import (
 )
 
 func main() {
-	fmt.Println("//// Калькулятор жирности тела ")
+	PrintHeader("Калькулятор Жирности Массы Тела 💪")
 	userKg, userHeight := getUserInput()
 	IMT := calculateIMT(userKg, userHeight)
+
+	clearScreen()
+
 	outputResult(IMT)
+	fmt.Println("\nЧто бы выйти введите любую клавишу и нажмите Enter")
 	var a string
 	fmt.Scan(&a)
-	return
 }
 
 func outputResult(IMT float64) {
@@ -33,5 +36,16 @@ func getUserInput() (float64, float64) {
 	fmt.Scan(&userHeight)
 	fmt.Print("Введите свой вес (в килограммах): ")
 	fmt.Scan(&userKg)
+	clearScreen()
 	return userKg, userHeight
+}
+func PrintHeader(title string) {
+	fmt.Println("\033[36m╔════════════════════════════════════════════╗")
+	fmt.Printf("║ %-32s         ║\n", title)
+	fmt.Println("╚════════════════════════════════════════════╝\033[0m")
+	fmt.Println()
+}
+
+func clearScreen() {
+	fmt.Print("\033[H\033[2J")
 }
